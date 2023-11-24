@@ -1,0 +1,139 @@
+/*-----------------------------------------------------------------------------------*/
+/*	05. REVOLUTION SLIDER
+/*-----------------------------------------------------------------------------------*/
+.tp-fullwidth-container,
+.tp-fullscreen-container,
+.tp-banner-container {
+    width: 100% !important;
+    position: relative;
+    padding: 0;
+}
+.revolution {
+    z-index: 998
+}
+.revolution.tp-banner-container {
+	z-index: 996;
+}
+.revolution btn {
+    font-size: 13px
+}
+.revolution ul {
+    display: none;
+    margin: 0;
+    list-style: none;
+}
+.revolution .tp-caption {
+    color: #efefef
+}
+.revolution .tp-caption.large {
+    font-size: 50px;
+    line-height: 60px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.revolution .tp-caption.medium {
+    font-size: 27px;
+    font-style: italic;
+}
+.tp-leftarrow.default,
+.tp-rightarrow.default {
+    z-index: 100;
+    cursor: pointer;
+    position: relative;
+    top: 50% !important;
+    -webkit-transition: all 150ms ease-in;
+    -o-transition: all 150ms ease-in;
+    -moz-transition: all 150ms ease-in;
+    color: #f7f7f7;
+    padding: 0;
+    width: 45px;
+    height: 80px;
+    line-height: 75px;
+    text-align: center;
+    font-size: 30px;
+    background: rgba(0,0,0,0.2);
+}
+.tp-leftarrow.default {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.tp-rightarrow.default {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.tparrows:before {
+    font-family: 'budicon';
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+    display: inline-block;
+    text-decoration: inherit;
+    text-align: center;
+    vertical-align: middle;
+}
+.tp-leftarrow.default:before {
+    content: '\e046';
+    left: 0;
+    margin-left: -6px;
+}
+.tp-rightarrow.default:before {
+    content: '\e044';
+    margin-right: -6px;
+}
+.tparrows:hover {
+    background: rgba(0,0,0,0.4)
+}
+.tp-bullets {
+    bottom: 30px !important
+}
+.tp-bullets.simplebullets.round .bullet {
+    margin-left: 5px;
+    border-radius: 3px;
+    width: 14px;
+    height: 14px;
+    transition: all 150ms ease-in;
+    background: rgba(0,0,0,0.3);
+}
+.tp-bullets.simplebullets.round .bullet.selected,
+.tp-bullets.simplebullets.round .bullet:hover {
+    background: rgba(0,0,0,0.5)
+}
+.tp-bullets.hidebullets {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    opacity: 0;
+}
+.tp-loader.spinner0 {
+    background: none !important;
+    height: 40px;
+    width: 40px;
+    -webkit-animation: rotation .8s infinite linear;
+    -moz-animation: rotation .8s infinite linear;
+    -o-animation: rotation .8s infinite linear;
+    animation: rotation .8s infinite linear;
+    border-left: 3px solid rgba(69,190,132,.15);
+    border-right: 3px solid rgba(69,190,132,.15);
+    border-bottom: 3px solid rgba(69,190,132,.15);
+    border-top: 3px solid rgba(69,190,132,.8);
+    border-radius: 100%;
+    margin: -20px -20px;
+    top: 50%;
+    left: 50%;
+    z-index: 1000;
+    position: absolute;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+.tp-bannertimer {
+    width: 100%;
+    height: 10px;
+    background: url(style/images/timer.png);
+    position: absolute;
+    z-index: 200;
+}
+.tp-dottedoverlay.twoxtwo {
+    background: rgba(38,39,42,0.4)
+}
