@@ -43,7 +43,7 @@
                 @yield('video')
                 @yield('VideoAdminUpdate')
                 @yield('productgallery')
-                @yield('GalleryAdminUpdate')'
+                @yield('GalleryAdminUpdate')
                 @yield('AdminUpdateInfocards')
                 @yield('Message Register')
 

@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\FormSendRegister;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Pagination\Paginator;
+
 
 class FormSendRegisterController extends Controller
 {
@@ -13,7 +16,9 @@ class FormSendRegisterController extends Controller
      */
     public function index()
     {
-        return view("formsendregister");
+       $form = FormSendRegister::all();
+       $form = FormSendRegister::pagination(10);
+        return view("formsendregister", ['form'=>DB::table('Form_send_register')->paginate(10)]);
     }
 
     /**
@@ -67,10 +72,10 @@ class FormSendRegisterController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(FormSendRegister $formDestroy)
+    public function destroy(FormSendRegister $formDestroy,$id)
     {
-        $formDestroy = FormSendRegister::first();
-        // dd($formDestroy);
+        $formDestroy = FormSendRegister::find($id);
+
         $formDestroy->delete();
 
         return redirect()->route('register')->withSuccess('Delete successfully!');

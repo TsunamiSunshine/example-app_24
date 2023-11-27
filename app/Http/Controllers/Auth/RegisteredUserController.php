@@ -16,17 +16,22 @@ use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class RegisteredUserController extends Controller
 {
+
     /**
      * Display the registration view.
      */
     public function create(): View
     {
         $form = FormSendRegister::all();
+        $form = FormSendRegister::paginate(10);
 
-        return view('auth.register', ['form' => $form]);
+        return view('auth.register', ['form' => $form,]);
     }
 
     /**
@@ -41,15 +46,6 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
 
         ]);
-        // $user = User::create([
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'password' => Str::random(8),
-        // ]);
-
-        // if (!$user) {
-        //     return response()->json(['message' => 'User not found'], 404);
-        // }
 
         $r_password = Str::random(8);
         $user = $r_password;
@@ -58,7 +54,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password'=> Hash::make($r_password),
         ]);
-// dd($user);
+
         Mail::to($user['email'])->send(new YourPassword($user,$r_password));
 
         event(new Registered($user));

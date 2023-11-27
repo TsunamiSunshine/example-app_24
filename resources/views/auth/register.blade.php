@@ -100,28 +100,23 @@
                             <td class="text-center">{{ $item->select_department }}</td>
                             <td class="text-justify"><div style="width: auto">{{ $item->message }}</div></td>
                             <td class="text-center">
-                                <ul class="table-controls">
-                                    <button class="btn-success">
+                                    <button class="btn btn-success mb-2">
                                         {{ __('Register') }}
                                     </button>
-                    </form>
-                    <form action='{{ route('formsendregister.store.submit.destroy', $item->id) }}' method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button name="delete" class="btn-danger">Delete</button>
-                    </form>
-                    </ul>
-                    </td>
-                    </tr>
+                                </ul>
+                            </form>
+                                <form action='{{ route('formsendregister.store.submit.destroy', $item->id) }}' method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button name="delete" class="btn btn-danger mb-2">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
                 </tbody>
-            @endforeach
-        </table>
-        <div class="paginating-container pagination-solid">
-            <ul class="pagination">
-                <li class="prev"><a href="javascript:void(0);">Prev</a></li>
-                <li class="active"><a href="javascript:void(0);">1</a></li>
-                <li class="next"><a href="javascript:void(0);">Next</a></li>
-            </ul>
-        </div>
+                @endforeach
+            </table>
+
+            {{ $form->links('pagination::bootstrap-5') }}
+
     </div>
 @endsection
