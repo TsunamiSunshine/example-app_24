@@ -55,8 +55,23 @@
     </x-guest-layout> --}}
     <div class="table-responsive">
         <table class="table table-bordered table-hover table-condensed mb-4">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <thead>
-                <tr>
+                <tr class="text-center">
+                    <th>#</th>
                     <th>Name</th>
                     <th>E-mail</th>
                     <th>Phone</th>
@@ -70,35 +85,43 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <tr>
-                            <td>
-                                    <input hidden id="name" class="" type="text" name="name"
-                                        value="{{$item->name}}" required autofocus autocomplete="name" />
-                                        {{$item->name}}
+                            <td class="text-center">{{$item->id}}</td>
+                            <td class="text-center">
+                                <input hidden id="name" class="" type="text" name="name"
+                                    value="{{ $item->name }}" required autofocus autocomplete="name" />
+                                {{ $item->name }}
                             </td>
-                            <td>
-                                    <input hidden id="email" class="" type="email" name="email"
-                                        value="{{$item->email}}" required autocomplete="username" />
-                                        {{$item->email}}
+                            <td class="text-center">
+                                <input hidden id="email" class="" type="email" name="email"
+                                    value="{{ $item->email }}" required autocomplete="username" />
+                                {{ $item->email }}
                             </td>
-                            <td>{{$item->phone}}</td>
-                            <td>{{$item->select_department}}</td>
-                            <td>{{$item->message}}</td>
+                            <td class="text-center">{{ $item->phone }}</td>
+                            <td class="text-center">{{ $item->select_department }}</td>
+                            <td class="text-justify"><div style="width: auto">{{ $item->message }}</div></td>
                             <td class="text-center">
                                 <ul class="table-controls">
                                     <button class="btn-success">
                                         {{ __('Register') }}
                                     </button>
-                                </form>
-                                    <form action='{{route('formsendregister.store.submit.destroy', $item->id)}}' method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button name="delete" class="btn-danger">Delete</button>
-                                    </form>
-                                </ul>
-                            </td>
-                        </tr>
+                    </form>
+                    <form action='{{ route('formsendregister.store.submit.destroy', $item->id) }}' method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button name="delete" class="btn-danger">Delete</button>
+                    </form>
+                    </ul>
+                    </td>
+                    </tr>
                 </tbody>
             @endforeach
         </table>
+        <div class="paginating-container pagination-solid">
+            <ul class="pagination">
+                <li class="prev"><a href="javascript:void(0);">Prev</a></li>
+                <li class="active"><a href="javascript:void(0);">1</a></li>
+                <li class="next"><a href="javascript:void(0);">Next</a></li>
+            </ul>
+        </div>
     </div>
 @endsection

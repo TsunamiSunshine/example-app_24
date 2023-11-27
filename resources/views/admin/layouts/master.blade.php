@@ -29,6 +29,7 @@
     <link href="{{asset('assets/admin/css/slider/plugins.css')}}" rel='stylesheet' type="text/css" />
     <link href="{{asset('assets/admin/css/slider/sliderplugs.css')}}" rel='stylesheet' type="text/css" />
     <link href={{ asset('assets/type/icons.css') }} rel="stylesheet">
+    <link href="{{asset('assets/admin/css/elements/custom-pagination.css')}}" rel='stylesheet' type="text/css" />
 
 
 

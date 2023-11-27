@@ -49,9 +49,6 @@
                     <li class="">
                         <a href='{{route('admin.video')}}'> Video</a>
                     </li>
-                    <li class="">
-                        <a href="{{ route('image.index') }}"> Upload Image </a>
-                    </li>
                 </ul>
             </li>
 

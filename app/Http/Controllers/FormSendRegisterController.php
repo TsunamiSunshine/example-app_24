@@ -37,7 +37,7 @@ class FormSendRegisterController extends Controller
         $form['select_department'] = $request->department;
         FormSendRegister::create($form);
 
-        return view('formsendregister')->with('success','Message sent! ');
+        return redirect()->back()->withSuccess('Your message has been sent successfully!');
     }
 
     /**
@@ -73,6 +73,6 @@ class FormSendRegisterController extends Controller
         // dd($formDestroy);
         $formDestroy->delete();
 
-        return redirect()->route('register');
+        return redirect()->route('register')->withSuccess('Delete successfully!');
     }
 }
