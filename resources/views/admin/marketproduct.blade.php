@@ -21,12 +21,12 @@
                     <tr>
                         <td class="text-center">{{ $item->id }}</td>
                         <td class="text-center">{{ $item->name }}</td>
-                        <td class="text-center">{{ $item->product_id}}</td>
+                        <td class="text-center">{{ $item->product_id }}</td>
                         <td>
                             <img src='{{ URL::asset('storage/' . $item->image) }}' width="200px" />
                         </td>
                         <td class="text-center">{{ $item->description }}</td>
-                        <td>{{$item->price}} $</td>
+                        <td>{{ $item->price }} $</td>
                         <td class="text-center">
                             <ul class="table-controls">
                                 <div class="btn-group" role="group" aria-label="Basic example">
@@ -62,8 +62,8 @@
 
                         <select class='form-control  basic' id='product_id' name="product_id">
                             @foreach ($category as $item)
-                            {{dump($item->id)}}
-                            <option value='{{$item->id}}'>{{$item->name}}</option>
+                                {{ dump($item->id) }}
+                                <option value='{{ $item->id }}'>{{ $item->name }}</option>
                             @endforeach
 
 
@@ -89,4 +89,39 @@
         </div>
     </div>
     </div>
+    <div class="container" >
+        <div class="light-wrapper">
+            <div class="container inner">
+                <div class="cbp-panel">
+                    <div id="filters-container" class="cbp-filter-container text-center">
+                        <div data-filter="*" class="cbp-filter-item-active cbp-filter-item"> All </div>
+                        @foreach ($category as $category)
+                            <div data-filter=".{{ $category->id }}" class="cbp-filter-item">{{ $category->name }}</div>
+                        @endforeach
+                    </div>
+                    <div id="grid-container" class="cbp">
+                        @foreach ($product as $product)
+                            <div class="cbp-item {{ $product->categories->pluck('id')->implode(' ') }}">
+                                <a href="ajax/project1.html" class="cbp-caption cbp-singlePageInline">
+                                    <div class="cbp-caption-defaultWrap">
+                                        <img src="{{ URL::asset('storage/' . $product->image) }}" alt="" />
+                                    </div>
+                                    <div class="cbp-caption-activeWrap">
+                                        <div class="cbp-l-caption-alignCenter">
+                                            <div class="cbp-l-caption-body">
+                                                <div class="cbp-l-caption-title">{{ $product->name }}</div>
+                                                <div class="cbp-l-caption-desc">{{ $product->description }}</div>
+                                                <div class="cbp-l-caption-desc">{{ $product->price }}$</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
