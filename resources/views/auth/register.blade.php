@@ -116,7 +116,7 @@
                 @endforeach
             </table>
 
-            {{ $form->links('pagination::bootstrap-5') }}
+            {{ $forms->links('pagination::bootstrap-5') }}
 
     </div>
 @endsection

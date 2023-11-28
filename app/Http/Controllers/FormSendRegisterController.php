@@ -17,8 +17,7 @@ class FormSendRegisterController extends Controller
     public function index()
     {
        $form = FormSendRegister::all();
-       $form = FormSendRegister::pagination(10);
-        return view("formsendregister", ['form'=>DB::table('Form_send_register')->paginate(10)]);
+        return view("formsendregister", ['form'=>$form]);
     }
 
     /**

@@ -23,7 +23,6 @@ class YourPassword extends Mailable
     {
         $this->user = $user;
         $this->r_password = $r_password;
-
         return new Content(
             view:'auth.yourpassword',
         );
@@ -32,11 +31,11 @@ class YourPassword extends Mailable
     /**
      * Get the message envelope.
      */
-    public function envelope($name): Envelope
+    public function envelope(): Envelope
     {
         return new Envelope(
             from: new Address('hyggy@example.com','Hygge'),
-            subject: 'Hello!'.$name .'Your Password',
+            subject: 'Hello'. ', '.$this->user->name. ', ' .'your Password',
         );
     }
 

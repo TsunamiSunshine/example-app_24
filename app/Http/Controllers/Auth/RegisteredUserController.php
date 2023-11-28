@@ -29,9 +29,9 @@ class RegisteredUserController extends Controller
     public function create(): View
     {
         $form = FormSendRegister::all();
-        $form = FormSendRegister::paginate(10);
+        $forms = FormSendRegister::paginate(10);
 
-        return view('auth.register', ['form' => $form,]);
+        return view('auth.register', ['form' => $form, 'forms'=>$forms]);
     }
 
     /**
