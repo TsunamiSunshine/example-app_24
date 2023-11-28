@@ -85,8 +85,11 @@
                             <li><a href="contact2.html">Contact 2</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown"><a href="#" class="dropdown-toggle js-activated"
-                            data-toggle="dropdown">Form Send Register<span class="caret"></span></a>
+                    <li class="dropdown"><a href="{{route('formsendregister.index')}}" class="dropdown-toggle js-activated"
+                            data-toggle="dropdown">Contact<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{route('formsendregister.index')}}">Send message for Register</a></li>
+                            </ul>
                     </li>
                 </ul>
                 <!-- /.navbar-nav -->

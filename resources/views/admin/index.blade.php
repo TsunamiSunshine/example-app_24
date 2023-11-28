@@ -46,6 +46,8 @@
                 @yield('GalleryAdminUpdate')
                 @yield('AdminUpdateInfocards')
                 @yield('Message Register')
+                @yield('marketAdmin')
+                @yield('marketproductAdmin')
 
             </div>
         </div>

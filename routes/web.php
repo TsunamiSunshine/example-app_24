@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\MainController;
@@ -15,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Models\FormSendRegister;
 use App\Http\Controllers\FormSendRegisterController;
+use App\Http\Controllers\ProductController;
+use App\Models\Category;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,6 +100,24 @@ Route::delete('admin/slider/{id}', [SliderController::class, 'destroySlider'])->
 Route::get('admin/image', [ImageController::class, 'index'])->name('image.index');
 Route::post('admin/image', [ImageController::class, 'store'])->name('store.image');
 
+//market
+//category
+Route::get('admin/market/category', [CategoryController::class, 'index'])->name('market.category.index');
+Route::post('admin/market/category', [CategoryController::class, 'store'])->name('market.category.store');
+Route::get('admin/market/category/show/{id}',[CategoryController::class, 'showCategory'])->name('market.category.show');
+Route::get('admin/market/category/update/{id}', [CategoryController::class, 'updateCategory'])->name('market.category.update');
+Route::post('admin/market/category/update/{id}', [CategoryController::class, 'updateSubmit'])->name('market.category.update.submit');
+Route::delete('admin/market/category/{id}', [CategoryController::class, 'destroy'])->name('market.category.destroy.submit');
+//product
+Route::get('admin/market/product', [ProductController::class, 'index'])->name('market.product.index');
+Route::post('admin/market/product', [ProductController::class, 'store'])->name('market.product.store');
+Route::get('admin/market/product/show/{id}',[ProductController::class, 'showProduct'])->name('market.product.show');
+Route::get('admin/market/product/update/{id}', [ProductController::class, 'updateProduct'])->name('market.product.update');
+Route::post('admin/market/product/update/{id}', [ProductController::class, 'updateSubmit'])->name('market.product.update.submit');
+Route::delete('admin/market/product/{id}', [ProductController::class, 'destroy'])->name('market.product.destroy.submit');
+
+
+
 
 //FormSendRegister
 Route::get('formsend', [FormSendRegisterController::class, 'index'])->name('formsendregister.index');
@@ -105,7 +127,7 @@ Route::delete('formsend/{id}', [FormSendRegisterController::class, 'destroy'])->
 
 
 
-
+//Auth
 Route::get('/welcome', function () {
     return view('welcome');
 });
@@ -122,3 +144,4 @@ Route::middleware('auth')->group(function () {
 
 
 require __DIR__ . '/auth.php';
+
