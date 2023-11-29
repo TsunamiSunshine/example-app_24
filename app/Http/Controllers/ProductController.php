@@ -39,7 +39,7 @@ class ProductController extends Controller
         $product = Product::find($id);
 
 
-        return view('admin.marketproduct',['product'=>$product]);
+        return view('card',['product'=>$product]);
     }
 
     public function updateProduct($id)

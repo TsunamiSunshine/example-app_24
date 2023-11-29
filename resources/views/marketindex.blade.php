@@ -1,10 +1,6 @@
 
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-black leading-tight">
-            {{ __('Market') }}
-        </h2>
-    </x-slot>
+
 
 
 
@@ -20,7 +16,7 @@
             <div id="grid-container" class="cbp">
                 @foreach ($product as $product)
                     <div class="cbp-item {{ $product->product_id}}">
-                        <a href="{{route('profile.edit')}}" class="cbp-caption cbp-singlePageInline">
+                        <a href="{{route('market.product.show', $product->id)}}" class="cbp-caption cbp-singlePageInline">
                             <div class="cbp-caption-defaultWrap">
                                 <img src="{{ URL::asset('storage/' . $product->image) }}" alt="" />
                             </div>

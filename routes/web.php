@@ -122,6 +122,7 @@ Route::get('market', [Controller::class, 'marketindex'])->name('market.index');
 
 
 
+
 //FormSendRegister
 Route::get('formsend', [FormSendRegisterController::class, 'index'])->name('formsendregister.index');
 Route::post('formsend', [FormSendRegisterController::class, 'store'])->name('formsendregister.store.index');
