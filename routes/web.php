@@ -4,6 +4,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\MainController;
@@ -115,6 +116,8 @@ Route::get('admin/market/product/show/{id}',[ProductController::class, 'showProd
 Route::get('admin/market/product/update/{id}', [ProductController::class, 'updateProduct'])->name('market.product.update');
 Route::post('admin/market/product/update/{id}', [ProductController::class, 'updateSubmit'])->name('market.product.update.submit');
 Route::delete('admin/market/product/{id}', [ProductController::class, 'destroy'])->name('market.product.destroy.submit');
+//market index
+Route::get('market', [Controller::class, 'marketindex'])->name('market.index');
 
 
 

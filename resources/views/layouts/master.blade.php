@@ -36,6 +36,7 @@
 
         @yield('content')
         @yield('formSendRegister')
+        @yield('marketIndex')
 
         @include('layouts.footer')
         <div id="share-bar"></div>

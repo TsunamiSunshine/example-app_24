@@ -83,15 +83,11 @@ $(document).ready(function() {
         singlePageInlineCallback: function(url, element) {
             // to update singlePageInline content use the following method: this.updateSinglePageInline(yourContent)
             var t = this;
-            $.ajax({
-                url: url,
-                type: 'GET',
-                dataType: 'html',
-                timeout: 10000
-            }).done(function(result) {
-                t.updateSinglePageInline(result);
+
+            $.get(url, function() {
+                t.updateSinglePageInline(`@include('profile.edit')`);
             }).fail(function() {
-                t.updateSinglePageInline('AJAX Error! Please refresh the page!');
+                t.updateSinglePageInline('Error! Please refresh the page!');
             });
         },
     });
@@ -134,19 +130,15 @@ $(document).ready(function() {
         singlePageInlinePosition: 'below',
         singlePageDeeplinking: true,
         singlePageInlineInFocus: true,
-        offsetValue: 300,
+        offsetValue: 100,
         singlePageInlineCallback: function(url, element) {
             // to update singlePageInline content use the following method: this.updateSinglePageInline(yourContent)
             var t = this;
-            $.ajax({
-                url: url,
-                type: 'GET',
-                dataType: 'html',
-                timeout: 10000
-            }).done(function(result) {
-                t.updateSinglePageInline(result);
+
+            $.get(url, function() {
+                t.updateSinglePageInline(`@include('profile.edit')`);
             }).fail(function() {
-                t.updateSinglePageInline('AJAX Error! Please refresh the page!');
+                t.updateSinglePageInline('Error! Please refresh the page!');
             });
         },
     });
