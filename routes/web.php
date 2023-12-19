@@ -17,9 +17,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Models\FormSendRegister;
 use App\Http\Controllers\FormSendRegisterController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Models\Category;
 use App\Models\Product;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -112,12 +115,24 @@ Route::delete('admin/market/category/{id}', [CategoryController::class, 'destroy
 //product
 Route::get('admin/market/product', [ProductController::class, 'index'])->name('market.product.index');
 Route::post('admin/market/product', [ProductController::class, 'store'])->name('market.product.store');
-Route::get('admin/market/product/show/{id}',[ProductController::class, 'showProduct'])->name('market.product.show');
+Route::get('market/product/show/{id}',[ProductController::class, 'showProduct'])->name('market.product.show');
 Route::get('admin/market/product/update/{id}', [ProductController::class, 'updateProduct'])->name('market.product.update');
 Route::post('admin/market/product/update/{id}', [ProductController::class, 'updateSubmit'])->name('market.product.update.submit');
 Route::delete('admin/market/product/{id}', [ProductController::class, 'destroy'])->name('market.product.destroy.submit');
 //market index
 Route::get('market', [Controller::class, 'marketindex'])->name('market.index');
+
+//Cart
+Route::get('/cart', [CartController::class ,'index'])->name('cart.index');
+Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+Route::patch('/cart/{product}', [CartController::class ,'update'])->name('cart.update');
+Route::delete('/cart/{product}', [CartController::class ,'destroy'])->name('cart.destroy');
+Route::post('/cart/switchToSaveForLater/{product}', [CartController::class ,'switchToSaveForLater'])->name('cart.switchToSaveForLater');
+Route::get('/checkout', [CheckoutController::class ,'index'])->name('checkout.index');
+Route::post('/checkout', [CheckoutController::class ,'store'])->name('checkout.store');
+
+
+
 
 
 

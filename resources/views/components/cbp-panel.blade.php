@@ -11,7 +11,7 @@
         <div id="grid-container" class="cbp">
             @foreach ($infocards as $card)
             <div class="cbp-item {{$card->card_id}}">
-                        <a href="ajax/project1.html"class="cbp-caption cbp-singlePageInline">
+                        <a href=""class="cbp-caption cbp-singlePageInline">
                             <div class="cbp-caption-defaultWrap">
                                 <img src="{{ URL::asset('storage/' . $card->image) }}" alt="" />
                             </div>

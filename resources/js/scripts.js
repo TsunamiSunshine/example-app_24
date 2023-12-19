@@ -75,39 +75,18 @@ $(document).ready(function() {
         lightboxTitleSrc: 'data-title',
         lightboxCounter: '<div class="cbp-popup-lightbox-counter">{{current}} of {{total}}</div>',
         // singlePageInline
-        // singlePageInlineDelegate: '.cbp-singlePageInline',
-        // singlePageInlinePosition: 'top',
-        // singlePageDeeplinking: true,
-        // singlePageInlineInFocus: true,
-        // offsetValue: 100,
-        // singlePageInlineCallback: function(url, element) {
-        //     // to update singlePageInline content use the following method: this.updateSinglePageInline(yourContent)
-        //     var t = this;
-        //     $.ajax({
-        //         url: url,
-        //         type: 'GET',
-        //         dataType: 'html',
-        //         timeout: 10000
-        //     }).done(function(result) {
-        //         t.updateSinglePageInline(result);
-        //     }).fail(function() {
-        //         t.updateSinglePageInline('AJAX Error! Please refresh the page!');
-        //     });
-        // },
-        //cbpmarket
         singlePageInlineDelegate: '.cbp-singlePageInline',
         singlePageInlinePosition: 'top',
         singlePageDeeplinking: true,
         singlePageInlineInFocus: true,
         offsetValue: 100,
-        singlePageInlineCallback: function(url, element) {
+        singlePageInlineCallback: function(url) {
             // to update singlePageInline content use the following method: this.updateSinglePageInline(yourContent)
             var t = this;
-
             $.get(url, function() {
-                t.updateSinglePageInline(`@include('profile.edit')`);
+                t.updateSinglePageInline(`@include('card')`);
             }).fail(function() {
-                t.updateSinglePageInline('Error! Please refresh the page!');
+                t.updateSinglePageInline('AJAX Error! Please refresh the page!');
             });
         },
     });
@@ -146,41 +125,21 @@ $(document).ready(function() {
         lightboxTitleSrc: 'data-title',
         lightboxCounter: '<div class="cbp-popup-lightbox-counter">{{current}} of {{total}}</div>',
         // singlePageInline
-        // singlePageInlineDelegate: '.cbp-singlePageInline',
-        // singlePageInlinePosition: 'below',
-        // singlePageDeeplinking: true,
-        // singlePageInlineInFocus: true,
-        // offsetValue: 300,
-        // singlePageInlineCallback: function(url, element) {
-        //     // to update singlePageInline content use the following method: this.updateSinglePageInline(yourContent)
-        //     var t = this;
-        //     $.ajax({
-        //         url: url,
-        //         type: 'GET',
-        //         dataType: 'html',
-        //         timeout: 10000
-        //     }).done(function(result) {
-        //         t.updateSinglePageInline(result);
-        //     }).fail(function() {
-        //         t.updateSinglePageInline('AJAX Error! Please refresh the page!');
-        //     });
-        // },
-         //cbpmarket
-         singlePageInlineDelegate: '.cbp-singlePageInline',
-         singlePageInlinePosition: 'below',
-         singlePageDeeplinking: true,
-         singlePageInlineInFocus: true,
-         offsetValue: 100,
-         singlePageInlineCallback: function(url, element) {
-             // to update singlePageInline content use the following method: this.updateSinglePageInline(yourContent)
-             var t = this;
+        singlePageInlineDelegate: '.cbp-singlePageInline',
+        singlePageInlinePosition: 'below',
+        singlePageDeeplinking: true,
+        singlePageInlineInFocus: true,
+        offsetValue: 300,
+        singlePageInlineCallback: function(url) {
+            // to update singlePageInline content use the following method: this.updateSinglePageInline(yourContent)
+            var t = this;
+            $.get(url, function() {
+                t.updateSinglePageInline(`@include('card')`);
+            }).fail(function() {
+                t.updateSinglePageInline('AJAX Error! Please refresh the page!');
+            });
+        },
 
-             $.get(url, function() {
-                 t.updateSinglePageInline(`@include('profile.edit')`);
-             }).fail(function() {
-                 t.updateSinglePageInline('Error! Please refresh the page!');
-             });
-         },
     });
 
     /*-----------------------------------------------------------------------------------*/
