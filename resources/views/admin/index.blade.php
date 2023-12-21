@@ -48,6 +48,8 @@
                 @yield('Message Register')
                 @yield('marketAdmin')
                 @yield('marketproductAdmin')
+                @yield('marketDiscountAdmin')
+                @yield('marketCreateDiscountAdmin')
 
             </div>
         </div>

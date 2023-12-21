@@ -1,10 +1,12 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Mail\OrderShipped;
 use App\Models\Order;
-use App\Order as AppOrder;
+use App\Models\User;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CheckoutController extends Controller
 {
@@ -13,7 +15,7 @@ class CheckoutController extends Controller
         return view('checkout');
     }
 
-    public function store(Request $request)
+    public function store(Request $request,User $user)
     {
         $order = new Order;
 
@@ -26,11 +28,11 @@ class CheckoutController extends Controller
         $order->billing_postalcode = $request->postalcode;
         $order->billing_phone = $request->phone;
         $order->billing_name_on_card = $request->name_on_card;
-        $order->billing_discount = getNumbers()->get('discount');
-        $order->billing_discount_code = getNumbers()->get('code');
-        $order->billing_subtotal = getNumbers()->get('newSubtotal');
-        $order->billing_tax = getNumbers()->get('newTax');
-        $order->billing_total = getNumbers()->get('newTotal');
+        $order->billing_discount = $order->getNumbers()->get('discount');
+        $order->billing_discount_code = $order->getNumbers()->get('code');
+        $order->billing_subtotal = $order->getNumbers()->get('newSubtotal');
+        $order->billing_tax = $order->getNumbers()->get('newTax');
+        $order->billing_total = $order->getNumbers()->get('newTotal');
 
         $order->save();
 
@@ -40,6 +42,8 @@ class CheckoutController extends Controller
 
         Cart::instance('default')->destroy();
 
-        return redirect()->route('confirmation.index')->with('success_message', 'Thank you! Your payment has been successfully accepted!');
+        Mail::to($request->email)->send(new OrderShipped($order,$user));
+
+        return redirect()->route('market.index')->with('success_message', 'Thank you! Your payment has been successfully accepted!');
     }
 }

@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+button, [type=submit] {
+    -webkit-appearance: button;
+    background:black;
+    background-image: none;
+}

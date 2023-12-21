@@ -25,9 +25,9 @@ return new class extends Migration
             $table->integer('billing_discount')->nullable();
             $table->string('billing_discount_code')->nullable();
             $table->integer('billing_subtotal');
-            $table->integer('billing_tax');
-            $table->integer('billing_total');
-            $table->string('payment_gateway');
+            $table->decimal('billing_tax', 10,2);
+            $table->decimal('billing_total', 10 , 2);
+            $table->string('payment_gateway')->default('stripe');
             $table->text('error')->nullable();
             $table->timestamps();
 

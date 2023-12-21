@@ -23,7 +23,7 @@ class CartController extends Controller
             return redirect()->route('cart.index')->with('success_message', 'Item is already in your cart!');
         }
 
-        Cart::add($request->id, $request->name, 1, $request->price)
+        Cart::add($request->id, $request->name, 1, $request->price, $request->image)
             ->associate('App\Product');
 
         return redirect()->route('cart.index')->with('success_message', 'Item was added to your cart!');
@@ -49,7 +49,7 @@ class CartController extends Controller
 
         Cart::remove($id);
 
-        Cart::instance('saveForLater')->add($item->id, $item->name, 1, $item->price)
+        Cart::instance('saveForLater')->add($item->id, $item->name, 1, $item->price, $item->image)
             ->associate('App\Model\Product');
 
         return redirect()->route('cart.index')->with('success_message', 'Item has been saved for later!');

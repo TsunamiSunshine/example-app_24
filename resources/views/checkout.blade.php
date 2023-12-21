@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container">
+    <div class="container" style="margin: 100px;color:rgb(70, 67, 67);">
         <h1>Checkout</h1>
 
         <div class="row">
@@ -63,42 +63,42 @@
                         <div id="card-errors" role="alert"></div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Complete Order</button>
+                    <button type="submit" style="background-color: #3ca975; margin-right:10px;" class="btn btn-primary">Complete Order</button>
                 </form>
             </div>
 
             <div class="col-md-6">
                 <h2>Your Order</h2>
 
-                <table class="table">
+                <table class="table w-8 text-center">
                     <thead>
-                        <tr>
+                        <tr class="bg-gray-50 border">
                             <th>Product</th>
                             <th>Quantity</th>
                             <th>Price</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="bg-white divide-y divide-gray-200">
                         @foreach (Cart::content() as $item)
                             <tr>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->qty }}</td>
-                                <td>{{ $item->price }}$</td>
+                                <td class="border px-4 py-2">{{ $item->name }}  <img src="{{ URL::asset('storage/' . $item->image) }}" class="card-img-top" alt="{{ $item->name }}"></td>
+                                <td class="border px-4 py-2">{{ $item->qty }}</td>
+                                <td class="border px-4 py-2">{{ $item->price }}$</td>
                             </tr>
                         @endforeach
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="2">Subtotal</td>
-                            <td>{{ Cart::subtotal() }}$</td>
+                            <td colspan="2" class="border px-4 py-2">Subtotal</td>
+                            <td class="border px-4 py-2">{{ Cart::subtotal() }}$</td>
                         </tr>
                         <tr>
-                            <td colspan="2">Tax</td>
-                            <td>{{ Cart::tax() }}$</td>
+                            <td colspan="2" class="border px-4 py-2">Tax</td>
+                            <td class="border px-4 py-2">{{ Cart::tax() }}$</td>
                         </tr>
                         <tr>
-                            <td colspan="2">Total</td>
-                            <td>{{ Cart::total() }}$</td>
+                            <td colspan="2" class="border px-4 py-2">Total</td>
+                            <td class="border px-4 py-2">{{ Cart::total() }}$</td>
                         </tr>
                     </tfoot>
                 </table>

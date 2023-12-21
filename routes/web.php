@@ -23,6 +23,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\DiscountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,7 +60,7 @@ Route::get(
 
 
 //admin dashboard
-Route::get('/admin', [AdminController::class, 'admin.index'])->name('admin');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
 
 
@@ -130,6 +131,14 @@ Route::delete('/cart/{product}', [CartController::class ,'destroy'])->name('cart
 Route::post('/cart/switchToSaveForLater/{product}', [CartController::class ,'switchToSaveForLater'])->name('cart.switchToSaveForLater');
 Route::get('/checkout', [CheckoutController::class ,'index'])->name('checkout.index');
 Route::post('/checkout', [CheckoutController::class ,'store'])->name('checkout.store');
+//discount
+Route::get('/discounts', [DiscountController::class,'index'])->name('discount.index');
+Route::get('/discounts/create', [DiscountController::class,'create'])->name('discount.create');
+Route::post('/discounts', [DiscountController::class,'store'])->name('discount.store');
+Route::get('/discounts/{discount}/edit', [DiscountController::class,'edit'])->name('discount.edit');
+Route::put('/discounts/{discount}', [DiscountController::class,'update'])->name('discount.update');
+Route::delete('/discounts/{discount}', [DiscountController::class,'destroy'])->name('discount.destroy');
+
 
 
 

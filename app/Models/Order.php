@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cart;
 
 class Order extends Model
 {
@@ -36,4 +37,26 @@ class Order extends Model
     {
         return $this->belongsToMany(Product::class)->withPivot('quantity');
     }
+
+    function getNumbers()
+{
+    $tax = config('cart.tax') / 100;
+    $discount = session()->get('coupon')['discount'] ?? 0;
+    $discount_code = session()->get('coupon')['name'] ?? null;
+    $newSubtotal = (Cart::subtotal() - $discount);
+    if ($newSubtotal < 0) {
+        $newSubtotal = 0;
+    }
+    $newTax = $newSubtotal * $tax;
+    $newTotal = $newSubtotal * (1 + $tax);
+
+    return collect([
+        'tax' => $tax,
+        'discount' => $discount,
+        'code' => $discount_code,
+        'newSubtotal' => $newSubtotal,
+        'newTax' => $newTax,
+        'newTotal' => $newTotal,
+    ]);
+}
 }

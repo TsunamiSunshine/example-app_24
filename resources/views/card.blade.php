@@ -2,7 +2,7 @@
 <div class="card">
     <img src="{{ URL::asset('storage/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
     <div class="card-body">
-        <form action="{{ route('orders.addToCart') }}" method="POST">
+        <form action="{{ route('cart.store') }}" method="POST">
             @csrf
             <input type="hidden" name="product_id" value="{{ $product->id }}">
             <h2>{{ $product->name }}</h2>
