@@ -27,19 +27,47 @@ class Product extends Model
     {
         return $this->belongsToMany(ModelsOrder::class)->withPivot('quantity');
     }
+
     public function discounts()
     {
         return $this->belongsToMany(Discount::class);
     }
-    public function applyDiscount()
-    {
-        $discounts = $this->discounts;
 
-        foreach ($discounts as $discount) {
-            $this->price -= $this->price * ($discount->percent_off / 100);
-        }
+    // public function applyNumberDiscount($quantity)
+    // {
+    //     $discountThreshold = 10; // Количество штук для скидки
+    //     $discountPercentage = 10; // Процент скидки
 
-        return $this->price;
-    }
+    //     if ($quantity >= $discountThreshold) {
+    //         $discount = $this->price * ($discountPercentage / 100);
+    //         return $this->price - $discount;
+    //     }
+
+    //     return $this->price;
+    // }
+
+    // public function applySimpleDiscount()
+    // {
+    //     $discountPercentage = 20; // Процент скидки
+
+    //     $discount = $this->price * ($discountPercentage / 100);
+    //     return $this->price - $discount;
+    // }
+
+    // public function applyClockDiscount()
+    // {
+    //     $discountPercentage = 25; // Процент скидки
+    //     $happyHoursStart = '11:00'; // Время начала счастливых часов
+    //     $happyHoursEnd = '20:00'; // Время окончания счастливых часов
+
+    //     $currentTime = now()->format('H:i');
+
+    //     if ($currentTime >= $happyHoursStart && $currentTime <= $happyHoursEnd) {
+    //         $discount = $this->price * ($discountPercentage / 100);
+    //         return $this->price - $discount;
+    //     }
+
+    //     return $this->price;
+    // }
 
 }

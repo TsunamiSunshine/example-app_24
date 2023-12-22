@@ -72,4 +72,37 @@ class ProductController extends Controller
 
         return redirect()->back();
     }
+
+    // public function applyNumberDiscount(Request $request)
+    // {
+    //     $productId = $request->input('product_id');
+    //     $quantity = $request->input('quantity');
+
+    //     $product = Product::find($productId);
+    //     $discountedPrice = $product->applyNumberDiscount($quantity);
+
+    //     return view('discount', ['discountedPrice' => $discountedPrice]);
+    // }
+
+    // public function applyDeliveryDiscount(Request $request)
+    // {
+    //     $productId = $request->input('product_id');
+    //     $isSelfPickup = $request->input('self_pickup');
+
+    //     $product = Product::find($productId);
+    //     $discountedPrice = $product->applyDeliveryDiscount($isSelfPickup);
+
+    //     return view('discount', ['discountedPrice' => $discountedPrice]);
+    // }
+
+    // public function applyClockDiscount(Request $request)
+    // {
+    //     $productId = $request->input('product_id');
+    //     $currentTime = date('H:i');
+
+    //     $product = Product::find($productId);
+    //     $discountedPrice = $product->applyClockDiscount($currentTime);
+
+    //     return view('discount', ['discountedPrice' => $discountedPrice]);
+    // }
 }

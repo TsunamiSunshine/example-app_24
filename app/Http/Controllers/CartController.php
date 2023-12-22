@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Cart;
@@ -11,6 +12,38 @@ class CartController extends Controller
     public function index()
     {
         return view('cart');
+    }
+
+    public function addToCart(Request $request, $productId)
+    {
+        $product = Product::findOrFail($productId);
+        $quantity = $request->input('quantity');
+        $discountId = $request->input('discount_id');
+
+        $order = new Order();
+        $order->product_id = $product->id;
+        $order->quantity = $quantity;
+        $order->discount_id = $discountId;
+        $order->save();
+
+        Cart::add([
+            'id' => $order->id,
+            'name' => $product->name,
+            'qty' => $quantity,
+            'price' => $product->price,
+            'options' => [
+                'discount' => $discountId
+            ]
+        ]);
+
+        return redirect()->back()->with('success', 'Товар добавлен в корзину');
+    }
+
+    public function viewCart()
+    {
+        $cartItems = Cart::content();
+
+        return view('cart', ['cartItems' => $cartItems]);
     }
 
     public function store(Request $request)
@@ -23,7 +56,7 @@ class CartController extends Controller
             return redirect()->route('cart.index')->with('success_message', 'Item is already in your cart!');
         }
 
-        Cart::add($request->id, $request->name, 1, $request->price, $request->image)
+        Cart::add($request->id, $request->name, 1, $request->price)
             ->associate('App\Product');
 
         return redirect()->route('cart.index')->with('success_message', 'Item was added to your cart!');

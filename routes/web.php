@@ -131,6 +131,8 @@ Route::delete('/cart/{product}', [CartController::class ,'destroy'])->name('cart
 Route::post('/cart/switchToSaveForLater/{product}', [CartController::class ,'switchToSaveForLater'])->name('cart.switchToSaveForLater');
 Route::get('/checkout', [CheckoutController::class ,'index'])->name('checkout.index');
 Route::post('/checkout', [CheckoutController::class ,'store'])->name('checkout.store');
+Route::post('/cart/add/{productId}', [CartController::class, 'addToCart'])->name('cart.add');
+Route::get('/cart/view', [CartController::class, 'viewCart'])->name('cart.view');
 //discount
 Route::get('/discounts', [DiscountController::class,'index'])->name('discount.index');
 Route::get('/discounts/create', [DiscountController::class,'create'])->name('discount.create');
